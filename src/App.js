@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { results } from './data'
+import MoviesList from './components/MoviesList';
+import MyMovies from './components/MyMovies';
+
+
+
+
 
 class App extends Component {
+  state = {
+    movies: results
+  }
   render() {
+    const favorites = this.state.movies.filter(movie => movie.inFavorites)
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <h1>All Movies</h1>
+        <MoviesList movies={this.state.movies} />
+        <h1>My Movies</h1>
+        <MyMovies favorites={favorites} />
       </div>
     );
   }
